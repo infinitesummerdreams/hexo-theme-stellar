@@ -9,6 +9,23 @@
   .social
     line-height: 0
     display: inline-block
+    padding: 1px
+    border-radius: 32px
+    filter: grayscale(100%)
+    overflow: hidden
+    background: transparent
+    trans3: box-shadow background transform
+    &:hover
+      z-index: 1
+      filter: unset
+      background: var(--alpha100)
+    img
+      border-radius: 2px
+      if hexo-config('style.prefers_theme') == 'auto'
+        @media (prefers-color-scheme: dark)
+          filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+      if hexo-config('style.prefers_theme') == 'always'
+        filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
     padding: 6px
     border-radius: 32px
     filter: grayscale(100%)
@@ -20,4 +37,7 @@
       filter: unset
       background: var(--alpha100)
     img
+      display: inline-block
+      height: 1em
+      width: 1em
       border-radius: 2px

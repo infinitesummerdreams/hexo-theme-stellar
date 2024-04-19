@@ -18,7 +18,7 @@ ghissues:
 # Recent update
 recent:
   layout: recent
-  rss: # /atom.xml # npm i hexo-generator-feed
+  rss: /atom.xml # npm i hexo-generator-feed
   limit: 10 # Count of posts
 
 # 页面树（与当前页面强关联的上下篇文章列表）
@@ -32,9 +32,10 @@ toc:
   min_depth: 1
   max_depth: 6
   collapse: false # true / false / auto
+  fallback: recent
   # 编辑本文按钮
   edit_this_page: # 从开头开始匹配替换
-    '_posts/': # https://github.com/xaoxuu/xaoxuu.com/blob/main/source/_posts/
+    '_posts/': # https://github.com/infinitesum/blog-source/tree/main/source/_posts/
     'wiki/stellar/': https://github.com/xaoxuu/hexo-theme-stellar-docs/blob/main/
 
 # GitHub 用户信息

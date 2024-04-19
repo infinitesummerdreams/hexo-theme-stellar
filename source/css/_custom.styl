@@ -42,7 +42,7 @@ $fs-code = convert(hexo-config('style.font-size.code'))
 $fs-codeblock = convert(hexo-config('style.font-size.codeblock'))
 
 $fsh1 = 'calc(%s + 9px)' % $fs-body
-$fsh2 = 'calc(%s + 11px)' % $fs-body
+$fsh2 = 'calc(%s + 8px)' % $fs-body
 $fsh3 = 'calc(%s + 7px)' % $fs-body
 $fsh4 = 'calc(%s + 4px)' % $fs-body
 $fsh5 = 'calc(%s + 2px)' % $fs-body
@@ -62,9 +62,10 @@ $border-button = 4px
 :root
   --width-main: 720px
   --fsp: $fs-body
-  --fsh2: 'calc(%s + 11px)' % var(--fsp)
-  --fsh3: 'calc(%s + 7px)' % var(--fsp)
-  --fsh4: 'calc(%s + 4px)' % var(--fsp)
+  --fsh1: 'calc(%s + 14px)' % var(--fsp)
+  --fsh2: 'calc(%s + 10px)' % var(--fsp)
+  --fsh3: 'calc(%s + 5px)' % var(--fsp)
+  --fsh4: 'calc(%s + 3px)' % var(--fsp)
   
   // 侧边栏文字内容宽度
   --side-content-width: 224px

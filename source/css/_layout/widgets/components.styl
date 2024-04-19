@@ -31,6 +31,13 @@
   trans1 filter
   flex-shrink: 0
 
+  if hexo-config('style.prefers_theme') == 'auto'
+    @media (prefers-color-scheme: dark)
+      filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%)
+  if hexo-config('style.prefers_theme') == 'always'
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%)
+
+
 .widget-body .linklist.left
   grid-gap: 2px
 .linklist.left .link

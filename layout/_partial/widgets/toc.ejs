@@ -50,17 +50,19 @@ function layoutDiv(fallback) {
     el += `</div>`
   }
   el += `<div class="widget-footer">`
-  el += editBtn
+  // el += editBtn
+  el += `<a class="toggle-font" onclick="toggleLXGWFont()">`
+  el += icon('default:font')
+  el += `<span>${__('btn.font')}</span>`
+  el += `</a>`  
   el += `<a class="top" onclick="util.scrollTop()">`
   el += icon('default:upup')
   el += `<span>${__('btn.top')}</span>`
   el += `</a>`
-  if (page.comments) {
-    el += `<a class="buttom" onclick="util.scrollComment()">`
-    el += icon('default:tocomment')
-    el += `<span>${__('btn.comments')}</span>`
-    el += `</a>`
-  }
+  el += `<a class="buttom" onclick="util.scrollComment()">`
+  el += icon('default:tocomment')
+  el += `<span>${__('btn.bottom')}</span>`
+  el += `</a>`
   el += `</div>`
   el += `</widget>`
   return el

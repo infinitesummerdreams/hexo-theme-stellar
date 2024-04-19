@@ -1,0 +1,48 @@
+<%
+function renderCategory(category, isSubcategory) {
+    var el = '';
+    var categoryClass = isSubcategory ? 'cat child' : 'cat'; // 这里为子分类添加 'cat child' 类
+  
+    // 以下是渲染分类的代码，无需改动
+    el += `<div>`;
+    el += `<a class="${categoryClass}" href="${url_for(category.path)}">`;
+    if (isSubcategory) {
+      el += `<i class="subcategory-icon"></i> `;
+    }
+    el += `<span class='name'>${icon('default:category')}${category.name}</span>`;
+    el += `<span class='badge'>(${category.posts.length})</span>`;
+    el += `</a>`;
+    if (category.children && category.children.length) {
+      category.children.forEach(function(child) {
+        el += renderCategory(child, true);
+      });
+    }
+    el += `</div>`;
+    return el;
+  }
+  
+function layoutCategoriesDiv() {
+  var el = '';
+  if (!site.categories || site.categories.length === 0) {
+    return el;
+  }
+  el += `<widget class="widget-wrapper${scrollreveal(' ')}">`; // 移除了背景类名从widget-wrapper
+  // 添加标题（如果存在）
+  if (item.title) {
+    el += '<div class="widget-header dis-select">';
+    el += '<span class="name">' + item.title + '</span>';
+    el += '</div>';
+  }
+  // 这里的categories-widget类负责背景
+  el += '<div class="post-list categories-widget">'; // 现在只在这里应用背景样式
+  el += '<div class="' + scrollreveal('') + '" id="cats">';
+  site.categories.sort('path').each(function(category) {
+    el += renderCategory(category, false);
+  });
+  el += '</div>';
+  el += '</div>';
+  el += '</widget>';
+  return el;
+}
+%>
+<%- layoutCategoriesDiv() %>

@@ -7,7 +7,7 @@
 .l_main .post-list
   .post-title
     font-weight: 500
-    margin: 1.25rem auto .75rem 0
+    margin: 0.8rem auto .5rem 0
     line-height: 1.2
     font-size: $fsh4
     border-bottom: none
@@ -31,11 +31,11 @@
   
   position: relative
   .excerpt
-    margin: 1rem 0
+    margin: 0.8rem 0
     @media screen and (max-width: $device-mobile)
       margin: 0.5rem 0
     >p
-      margin: 1rem 0
+      margin: 0.8rem 0
       @media screen and (max-width: $device-mobile)
         margin: 0.5rem 0
       line-height: 1.5
@@ -45,6 +45,8 @@
       align-items: center
     flex-wrap: wrap
     margin: 0
+    @media screen and (max-width: $device-mobile)
+      margin: 0.2rem 0
     line-height: 2
     --fsp: $fsp1
     font-size: var(--fsp)
@@ -54,6 +56,11 @@
       line-height: 0
       transform: scale(1.2)
       margin-right: 8px
+    .cap.tags
+      >span
+        margin-right: 0.5rem
+      svg
+        margin-right: 0
     >span+span
       margin-left: 1.5rem
     span.pin
@@ -72,7 +79,7 @@
   @media screen and (max-width: $device-mobile)
     padding: 0.5rem 1rem
   p
-    color: var(--text-p2)
+    color: var(--text-p4)
     font-size: $fs-14
 
 
@@ -84,6 +91,7 @@
   margin-left: -1rem
   margin-top: -1rem
   margin-right: -1rem
+  margin-bottom: 15px 
   background: var(--block)
   &:not(.lazy)
     trans1: transform 1s
