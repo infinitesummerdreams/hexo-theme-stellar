@@ -1,11 +1,11 @@
 btn:
   home: 主页
   blog: 文章
-  wiki: 文档
+  wiki: 文档库
   topic: 专栏
   recent_publish: 近期发布
   back_to_home: 返回主页
-  all_wiki: 所有项目
+  all_wiki: 文档库
   category: 分类
   categories: 分类
   tag: 标签
