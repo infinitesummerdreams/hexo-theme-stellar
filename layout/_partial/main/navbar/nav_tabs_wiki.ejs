@@ -37,7 +37,7 @@ function layoutDiv() {
       }
     }
   }
-
+  el += '<a href="' + url_for(config.index_generator.path) + '">' + __("btn.back_to_home") + '</a>';
   el += '</nav>';
   el += '</div>';
   return el;
