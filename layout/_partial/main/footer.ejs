@@ -35,7 +35,8 @@ function layoutDiv() {
   // Add dynamic message based on word count
   el += `<script>
     document.addEventListener("DOMContentLoaded", function() {
-      var countSpan = document.querySelector('.post-count');
+      var footer = document.querySelector('.page-footer'); // 确保只获取footer内的元素
+      var countSpan = footer.querySelector('.post-count');
       var words = countSpan.innerText.match(/(\\d+(\\.\\d+)?)([kKwW])?/);
       var numWords = 0;
       if (words[3] === 'w' || words[3] === 'W') {

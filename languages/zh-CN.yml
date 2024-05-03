@@ -1,15 +1,15 @@
 btn:
   home: 主页
   blog: 文章
-  wiki: 文档库
-  topic: 专栏
+  wiki: 银河展厅
+  topic: 星际特派
   recent_publish: 光年新讯
-  back_to_home: 返回主页
-  all_wiki: 文档库
-  category: 分类
-  categories: 分类
-  tag: 标签
-  tags: 标签
+  back_to_home: 返回超导中心
+  all_wiki: 银河展厅
+  category: 星域
+  categories: 星域
+  tag: 星标
+  tags: 星标
   archives: 归档
   all_posts: 所有文章
   getting_started: 开始使用
@@ -33,7 +33,7 @@ meta:
   created_author: 本文由 %s 发布于
   created: 发布于
   updated: 更新于
-  license: 许可协议
+  license: 星际许可
   share: 分享文章
   date_suffix:
     just: 刚刚
@@ -44,9 +44,9 @@ meta:
 
 page:
   error:
-    what: 很抱歉，您访问的页面不存在
-    why: 可能是输入地址有误或该地址已被删除
-    action: 返回主页
+    what: 很抱歉，该星系未找到
+    why: 可能是星际坐标错误或已被星际尘埃覆盖
+    action: 返回超导中心
 
 search:
   search: 站内搜索
@@ -58,7 +58,7 @@ message:
   theme_switched:
     light: 切换到浅色模式
     dark: 切换到深色模式
-    auto: 切换到跟随系统配色
+    auto: 跟随星系色彩
 
 symbol:
   comma: "，"
