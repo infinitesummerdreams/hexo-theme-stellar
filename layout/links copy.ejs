@@ -1,0 +1,27 @@
+<%- partial('_partial/head') %>  
+<div class="article-list--compact links">
+    <% if (site.data && site.data.links) { %>
+        <% site.data.links.forEach(function(link) { %>
+            <article>
+                <a href="<%- link.website %>" target="_blank" rel="noopener">
+                    <div class="article-details">
+                        <span class="article-title"><%- link.title %></span>
+                        <% if (link.description) { %>
+                            <footer class="article-time"><%- link.description %></footer>
+                        <% } %>
+                        <% if (link.notes) { %>
+                            <footer class="article-link"><%- link.notes %></footer>
+                        <% } %>
+                    </div>
+                    <% if (link.image) { %>
+                        <div class="article-image">
+                            <img src="<%- url_for(link.image) %>" loading="lazy">
+                        </div>
+                    <% } %>
+                </a>
+            </article>
+        <% }); %>
+    <% } else { %>
+        <p>No links data found or data is not loaded properly.</p>
+    <% } %>
+</div>

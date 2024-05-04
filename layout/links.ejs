@@ -1,0 +1,43 @@
+function layoutDiv() {
+    var el = ''
+    if (page.nav_tabs) {
+      el += partial('_partial/main/navbar/nav_tabs_blog')
+    }
+    if (page.h1 || page.title || (page.content && page.content.length > 0)) {
+      el += partial('_partial/main/navbar/article_banner')
+    }
+  
+    el += `<article class="${articleClass()}">`
+  
+    if (layout === 'links' && site.data && site.data.links) {
+      site.data.links.forEach(function(link) {
+        el += `<div>
+                 <a href="${link.website}" target="_blank" rel="noopener">
+                   <div class="article-details">
+                     <span class="article-title">${link.title}</span>
+                     ${link.description ? `<footer class="article-time">${link.description}</footer>` : ''}
+                     ${link.notes ? `<footer class="article-link">${link.notes}</footer>` : ''}
+                   </div>
+                   ${link.image ? `<div class="article-image"><img src="${url_for(link.image)}" loading="lazy"></div>` : ''}
+                 </a>
+               </div>`
+      });
+    } else if (page.content && page.content.length > 0) {
+      el += page.content
+    }
+  
+    if (layout === 'post' || layout === 'links') {
+      el += partial('_partial/main/article/article_footer')
+    }
+    el += `</article>`
+  
+    if (layout === 'post' || page.wiki) {
+      el += partial('_partial/main/article/read_next')
+    }
+    if (layout === 'post') {
+      el += partial('_partial/main/article/related_posts')
+    }
+    el += partial('_partial/comments/layout')
+    return el
+  }
+  
