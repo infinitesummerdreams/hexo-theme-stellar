@@ -2,7 +2,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* 根据需要调整列宽 */
   gap: 16px;
-  padding: 10px;
   background: none;
   box-shadow: none;
 }
@@ -14,7 +13,7 @@
   justify-content: space-between; /* 确保子元素分布在容器两侧 */
   background: var(--card);
   border: none;
-  box-shadow: var(--shadow-l2);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1)
   padding: 15px;
   border-radius: 10px;
   flex-basis: calc(40% - 20px); /* 自动适应容器宽度 */
@@ -61,6 +60,6 @@
   color: var(--text-meta)
 
 .user-note
-  font-size: 0.8rem
+  font-size: 0.9rem
   font-style: italic;
   color: var(--theme-link)

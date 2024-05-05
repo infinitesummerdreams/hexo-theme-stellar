@@ -1,10 +1,3 @@
-/**
- * friends.js v2 | https://github.com/xaoxuu/hexo-theme-stellar/
- * 格式与官方标签插件一致使用空格分隔，中括号内的是可选参数（中括号不需要写出来）
- *
- * {% friends [group] [repo:owner/repo] [api:http] %}
- */
-
 'use strict'
 
 module.exports = ctx => function(args) {
@@ -28,7 +21,13 @@ module.exports = ctx => function(args) {
         el += `<a class="card-link" target="_blank" rel="external nofollow noopener noreferrer" href="${item.url}">`
         el += `<img src="${item.icon || item.avatar || ctx.theme.config.default.avatar}" onerror="javascript:this.removeAttribute(&quot;data-src&quot;);this.src=&quot;${ctx.theme.config.default.avatar}&quot;;"/>`
         el += `<div class="name">`
-        el += `<span>${item.title}</span>`
+        el += `<span class="image-caption">${item.title}</span>`
+        if (item.description) {
+          el += `<div class="user-description">${item.description}</div>`
+        }
+        if (item.note) {
+          el += `<div class="user-note">${item.note}</div>`
+        }
         el += `</div>`
         el += `</a>`
         el += `</div>`
