@@ -3,6 +3,7 @@ btn:
   blog: 文章
   wiki: 银河展厅
   topic: 星际特派
+  notebook: 笔记本
   recent_publish: 光年新讯
   back_to_home: 返回超导中心
   all_wiki: 银河展厅
@@ -20,6 +21,8 @@ btn:
   
 meta:
   recent_update: 最近更新
+  tag_tree: 标签
+  all_notes: 所有笔记
   toc: 本文目录
   read_next: 接下来阅读
   prev: 回顾上一篇
