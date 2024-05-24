@@ -20,25 +20,74 @@
         padding-right: 0
       img
         display: none
-
+      /*cicada add 1*/
+      .user-avatar
+        background: white;
+        height: 16px; /* 或者您希望的任何尺寸 */
+        border-radius: 16px;
+        display: inline;
+        margin: 0 4px 0 0;
+        object-fit: contain;
+      /*cicada 0*/
     .header:before
       left: calc(6px - var(--gap-padding))
     .body
       border-radius: $border-card
+      border-top-left-radius: 2px /*cicada add*/
       padding: 0.5rem 1rem
+      margin: 0rem 1rem 0rem 1rem; /*cicada add*/
+      img
+        background: none
+        height: auto
+        border-radius: 0rem 0.4rem 0.4rem 0.4rem
       p,li
         --fsp: $fsp3
-      code 
+      code
         background: none
         padding: 0
         margin: 0
       .highlight, pre:not([class]):has(>code)
-        background: var(--alpha50)
-      
-      
+        background: var(--alpha50)  
+  /*cicada 1 add*/  
+  .tag-plugin.timeline .timenode-memos
+      z-index 1
+      margin-top: 0.25rem
+      .header
+        margin: 0.25rem var(--gap-padding)
+        .user-info
+          background: none
+          padding-right: 0
+        img
+          background: none
+          height: 16px !important
+          border-radius: 16px
+          display: inline
+          margin: 0 4px 0 0
+          object-fit: contain  
+      .header:before
+        left: calc(6px - var(--gap-padding))
+      .body
+        border-radius: $border-card
+        border-top-left-radius: 2px /*cicada*/
+        padding: 0.5rem 1rem /*cicada */
+        margin: 0rem 1rem 0rem 0.4rem; /*cicada add*/
+        /*cicada add 1*/
+        img
+          background: none
+          height: auto
+          border-radius: 0rem 0.4rem 0.4rem 0.4rem
+        /*cicada add 0*/
+        p,li
+          --fsp: $fsp3
+        code
+          background: none
+          padding: 0
+          margin: 0
+        .highlight, pre:not([class]):has(>code)
+          background: var(--alpha50)    
+  /*cicada 0*/  
   .tag-plugin.timeline[api] .body .footer
-    background: none
-
+    background: none  
 .l_left .widget-wrapper.timeline
   .tag-plugin.timeline
     padding-left: 0

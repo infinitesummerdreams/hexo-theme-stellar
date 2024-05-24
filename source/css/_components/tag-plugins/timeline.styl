@@ -16,6 +16,69 @@
     &:before
       display: none
 
+.tag-plugin.timeline .timenode-memos 
+  position: relative
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+  box-sizing: border-box
+  max-width: 100%
+  >.header, >.body
+    box-sizing: border-box
+    max-width: @max-width
+  &[highlight] .header:before
+    background: $color-theme
+  &+.timenode
+    margin-top: 1rem
+  &:hover .header
+    span
+      color: var(--text-p1)
+    &:before
+      background: $color-theme
+      height: 16px
+      top: 'calc(50% - 0.5 * %s)' % @height
+      transform: scale(1)
+.tag-plugin.timeline .timenode-memos .header
+  display: flex
+  align-items: center
+  position: relative
+  margin: 0.25rem 0
+  font-size: $fs-13
+  a.user-info span
+    font-weight: 600
+  .user-info
+    display: flex
+    align-items: center
+    font-size: $fs-13
+    font-weight: 500
+    color: var(--text-p1)
+    margin-right: 8px
+    line-height: 1
+    border-radius: 16px
+    img
+      background: white
+      height: 16px
+      border-radius: 16px
+      display: inline
+      margin: 0 4px 0 0
+      object-fit: contain
+  &,span
+    font-weight: 500
+    color: var(--text-p3)
+    line-height: 1
+  &:before
+    content: ''
+    position: absolute
+    left: -16px
+    width: 4px
+    border-radius: 12px
+    height: 4px
+    top: 'calc(50% - 0.5 * %s)' % @height
+    background: var(--text-meta)
+    trans4 background height top transform
+    transform: scale(2)
+
+
 .tag-plugin.timeline .timenode
   position: relative
   display: flex
