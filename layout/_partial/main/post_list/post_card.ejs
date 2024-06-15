@@ -79,13 +79,6 @@ function div_default() {
   el += '</div>';
 
   el += '<div class="meta cap">';
-    // cat tags
-    if (post.tags && post.tags.length > 0) {
-      el += '<span class="cap tags">';
-      el += post.tags.map(tag => `<span style="background-color: var(--tag-bg-color); padding: 0px 6px; border-radius: 5px; color: var(--tag-text-color); line-height: 1.5;">${icon('default:tag')}<span>${tag.name}</span></span>`).join('');
-      // el += post.tags.map(tag => `<span style="border: 1px solid #529dd6; padding: 0 5px; border-radius: 5px; margin-right: 5px; line-height: 1.3; display: inline-flex; align-items: center;">${icon('default:tag')}<span>${tag.name}</span></span>`).join('');
-      el += '</span>';
-    }
     // cat categories
 
   if (post.categories && post.categories.length > 0) {
@@ -102,6 +95,15 @@ function div_default() {
         el += icon('default:category')
         el += `<span>${cat}</span>`
         el += '</span>';
+        
+    // cat tags
+    if (post.tags && post.tags.length > 0) {
+      el += '<span class="cap tags">';
+      el += post.tags.map(tag => `<span style="background-color: var(--tag-bg-color); padding: 0px 6px; border-radius: 5px; color: var(--tag-text-color); line-height: 1.5;">${icon('default:tag')}<span>${tag.name}</span></span>`).join('');
+      // el += post.tags.map(tag => `<span style="border: 1px solid #529dd6; padding: 0 5px; border-radius: 5px; margin-right: 5px; line-height: 1.3; display: inline-flex; align-items: center;">${icon('default:tag')}<span>${tag.name}</span></span>`).join('');
+      el += '</span>';
+    }
+
       }
     }
   }
