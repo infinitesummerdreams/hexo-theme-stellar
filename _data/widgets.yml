@@ -35,7 +35,7 @@ toc:
   fallback: recent
   # 编辑本文按钮
   edit_this_page: # 从开头开始匹配替换
-    '_posts/': # https://github.com/infinitesum/blog-source/tree/main/source/_posts/
+    '_posts/': https://github.com/infinitesum/blog-source/tree/main/source/_posts/
     'wiki/stellar/': https://github.com/xaoxuu/hexo-theme-stellar-docs/blob/main/
 
 # GitHub 用户信息
