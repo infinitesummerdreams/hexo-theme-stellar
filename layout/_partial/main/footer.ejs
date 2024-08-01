@@ -48,65 +48,39 @@ function layoutDiv() {
       }
       var message = document.createElement('span');
       message.className = 'post-count'; // Assign class
-      if (numWords < 50000) {
-        message.innerText = ' 还在努力更新中.. 加油！加油啦！';
-      } else if (numWords < 70000) {
-        message.innerText = '好像写完一本埃克苏佩里 的 《小王子》 了啊';
-      } else if (numWords < 90000) {
-        message.innerText = '好像写完一本 鲁迅 的 《呐喊》 了啊';
-      } else if (numWords < 100000) {
-        message.innerText = '好像写完一本 林海音 的 《城南旧事》 了啊';
-      } else if (numWords < 110000) {
-        message.innerText = '好像写完一本 马克·吐温 的 《王子与乞丐》了！ 了啊';
-      } else if (numWords < 120000) {
-        message.innerText = '好像写完一本 鲁迅 的 《彷徨》 了啊';
-      } else if (numWords < 130000) {
-        message.innerText = '好像写完一本 余华 的 《活着》 了啊';
-      } else if (numWords < 140000) {
-        message.innerText = '好像写完一本 曹禺 的 《雷雨》 了啊';
-      } else if (numWords < 150000) {
-        message.innerText = '好像写完一本 史铁生 的 《宿命的写作》 了啊';
-      } else if (numWords < 160000) {
-        message.innerText = '好像写完一本 伯内特 的 《秘密花园》 了啊';
-      } else if (numWords < 170000) {
-        message.innerText = '好像写完一本 曹禺 的 《日出》 了啊';
-      } else if (numWords < 180000) {
-        message.innerText = '好像写完一本 马克·吐温 的 《汤姆·索亚历险记》 了啊';
-      } else if (numWords < 190000) {
-        message.innerText = '好像写完一本 沈从文 的 《边城》 了啊';
-      } else if (numWords < 200000) {
-        message.innerText = '好像写完一本 亚米契斯 的 《爱的教育》 了啊';
-      } else if (numWords < 210000) {
-        message.innerText = '好像写完一本 巴金 的 《寒夜》 了啊';
-      } else if (numWords < 220000) {
-        message.innerText = '好像写完一本 东野圭吾 的 《解忧杂货店》 了啊';
-      } else if (numWords < 230000) {
-        message.innerText = '好像写完一本 莫泊桑 的 《一生》 了啊';
-      } else if (numWords < 240000) {
-        message.innerText = '好像写完一本 简·奥斯汀 的 《傲慢与偏见》 了啊';
-      } else if (numWords < 280000) {
-        message.innerText = '好像写完一本 钱钟书 的 《围城》 了啊';
-      } else if (numWords < 290000) {
-        message.innerText = '好像写完一本 张炜 的 《古船》 了啊';
-      } else if (numWords < 300000) {
-        message.innerText = '好像写完一本 乔治·奥威尔 的 《1984》 了啊';
-      } else if (numWords < 310000) {
-        message.innerText = '好像写完一本 茅盾 的 《子夜》 了啊';
-      } else if (numWords < 340000) {
-        message.innerText = '好像写完一本 艾米莉·勃朗特 的 《呼啸山庄》 了啊';
-      } else if (numWords < 350000) {
-        message.innerText = '好像写完一本 雨果 的 《巴黎圣母院》 了啊';
-      } else if (numWords < 360000) {
-        message.innerText = '好像写完一本 东野圭吾 的 《白夜行》 了啊';
-      } else if (numWords < 360001) {
-        message.innerText = '好像写完一本我国著名的 四大名著 了！！！';
-      } else {
-        message.innerText = '还在努力更新中.. 加油！加油啦！';
-      }
+      const gradeChart = [
+      {minpercent: 40, letter: "好像写完一本我国著名的四大名著了啊"},
+      {minpercent: 35, letter: "好像写完一本 东野圭吾 的《白夜行》了啊"},
+      {minpercent: 34, letter: "好像写完一本 雨果 的《巴黎圣母院》了啊"},
+      {minpercent: 32, letter: "好像写完一本 艾米莉·勃朗特 的《呼啸山庄》了啊"},
+      {minpercent: 31, letter: "好像写完一本 阿来 的《尘埃落定》了啊"},
+      {minpercent: 30, letter: "好像写完一本 茅盾 的《子夜》了啊"},
+      {minpercent: 28, letter: "好像写完一本 张炜 的《古船》了啊"},
+      {minpercent: 25, letter: "好像写完一本 钱钟书 的《围城》了啊"},
+      {minpercent: 23, letter: "好像写完一本 简·奥斯汀 的《傲慢与偏见》了啊"},
+      {minpercent: 22, letter: "好像写完一本 莫泊桑 的《一生》了啊"},
+      {minpercent: 21, letter: "好像写完一本 东野圭吾 的《解忧杂货店》了啊"},
+      {minpercent: 20, letter: "好像写完一本 巴金 的《寒夜》了啊"},
+      {minpercent: 19, letter: "好像写完一本 亚米契斯 的《爱的教育》了啊"},
+      {minpercent: 18, letter: "好像写完一本 沈从文 的《边城》了啊"},
+      {minpercent: 17, letter: "好像写完一本 马克·吐温 的《汤姆·索亚历险记》了啊"},
+      {minpercent: 16, letter: "好像写完一本 曹禺 的《日出》了啊"},
+      {minpercent: 15, letter: "好像写完一本 伯内特 的《秘密花园》了啊"},
+      {minpercent: 14, letter: "好像写完一本 史铁生 的《宿命的写作》了啊"},
+      {minpercent: 13, letter: "好像写完一本 曹禺 的《雷雨》了啊"},
+      {minpercent: 12, letter: "好像写完一本 余华 的《活着》了啊"},
+      {minpercent: 11, letter: "好像写完一本 鲁迅 的《彷徨》了啊"},
+      {minpercent: 10, letter: "好像写完一本 马克·吐温 的《王子与乞丐》了啊"},
+      {minpercent: 9, letter: "好像写完一本 林海音 的《城南旧事》了啊"},
+      {minpercent: 7, letter: "好像写完一本 鲁迅 的《呐喊》了啊"},
+      {minpercent: 5, letter: "好像写完一本 埃克苏佩里 的《小王子》了啊"},
+      ];
+      const grade = gradeChart.find(grade => numWords >= grade.minpercent * 10000);
+      message.innerText = grade ? grade.letter : "还在努力更新中.. 加油！加油啦！";
       countSpan.parentNode.insertBefore(message, countSpan.nextSibling);
     });
-  </script>`
-
+  </script>`;
+  
   return el
 }
 %>
