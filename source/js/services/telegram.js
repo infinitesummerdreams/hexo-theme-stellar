@@ -1,6 +1,6 @@
 utils.jq(() => {
   $(function () {
-    const els = document.getElementsByClassName('ds-memos');
+    const els = document.getElementsByClassName('ds-telegram');
     for (var i = 0; i < els.length; i++) {
       const el = els[i];
       const api = el.getAttribute('api');
@@ -31,7 +31,7 @@ utils.jq(() => {
               return;
             }
           }
-          let date = new Date(item.createdTs * 1000)
+          let date = new Date(item.createdTs * 1000);
           var cell = '<div class="timenode" index="' + i + '">';
           cell += '<div class="header">';
           if (!users.length && !hide.includes('user')) {
@@ -44,9 +44,9 @@ utils.jq(() => {
           }
           cell += '<span>' + date.toLocaleString() + '</span>';
           cell += '</div>';
-          const originalLink = `https://s.dusays.com/m/${item.name}`;
-          cell += `<div class="body">`;
-          //cell += `<a class="body" href="${originalLink}" target="_blank">`;
+          //cell += `<div class="body">`;
+          const originalLink = `https://t.me/s/seeyounexttimeline/${item.id}`;
+          cell += `<a class="body" href="${originalLink}" target="_blank">`;
           cell += marked.parse(item.content || '');
           var imgs = [];
           for (let res of item.resourceList) {
@@ -65,8 +65,8 @@ utils.jq(() => {
             }
             cell += '</div>';
           }
-          // cell += '</a>';  // Close the <a> tag here inside the body
-          cell += '</div>';  // Close the timenode div
+          cell += '</a>';  // Close the <a> tag here inside the body
+          //cell += '</div>';  // Close the timenode div
           $(el).append(cell);
         });
       });
