@@ -52,8 +52,8 @@ function div_default() {
   // time
   el += `<time datetime="${date_xml(post.date)}" title="${date(post.date, config.date_format)}">${moment(post.date).fromNow()}</time>`
   // 字数统计
-  // el += '<span class="post-count">&nbsp;&nbsp;&nbsp;'+ wordcount(post.content) +' 字</span>';
-  el += '<span class="flex-row" id="post-words"><span>&nbsp;&nbsp;&nbsp;' + wordcount(post.content) + ' 字</span><span class="sep updated"></span><span class="text updated">' + min2read(post.content, {cn: 500, en: 260}) + ' 分钟</span></span>';
+  el += '<span class="post-count">&nbsp;&nbsp;&nbsp;'+ wordcount(post.content) +' 字</span>';
+  // el += '<span class="flex-row" id="post-words"><span>&nbsp;&nbsp;&nbsp;' + wordcount(post.content) + ' 字</span><span class="sep updated"></span><span class="text updated">' + min2read(post.content, {cn: 500, en: 260}) + ' 分钟</span></span>';
 
   el += '</span>';
   el += '</div>';
