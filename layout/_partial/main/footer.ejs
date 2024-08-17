@@ -29,7 +29,7 @@ function layoutDiv() {
     el += markdown(content)
   }
   el += '<span class="totalcount">收集了 ' + site.posts.length + ' 颗星星 ✧</span><span class="post-count"> 共 ' + totalcount(site) + ' 颗星尘，</span>'
-  el += '&emsp;<button id="toggleButton" style="background-color: #f0f0f0; border: none; border-radius: 5px; cursor: pointer; ">Let it snow!</button><script src="/js/snowflake.js"></script>'
+  el += '&emsp;<button id="toggleButton" style="font-family: \'IM Fell DW Pica\'; background-color: var(--tag-bg-color); color: var(--tag-text-color); border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s, color 0.3s;">Let it snow!</button><script src="/js/snowflake.js"></script>';
   el += '</div></footer>'
 
   // Add dynamic message based on word count
