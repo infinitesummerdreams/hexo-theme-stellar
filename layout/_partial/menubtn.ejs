@@ -1,15 +1,15 @@
 <div class='float-panel blur'>
-  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()' aria-label="打开右侧栏">
     <%- icon('default:rightbar') %>
   </button>
-  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()' aria-label="打开左侧栏">
     <%- icon('default:leftbar') %>
   </button>
-  <button type='button' style='display:none' class='laptop-only button-toggle mobile' onclick='util.scrollTop()'>
+  <button type='button' style='display:none' class='laptop-only button-toggle mobile' onclick='util.scrollTop()' aria-label="回到顶部">
     <%- icon('default:upup') %>
   </button>
   <% if (page.comments) { %>
-    <button type='button' style='display:none' class='laptop-only button-toggle mobile' onclick='util.scrollComment()'>
+    <button type='button' style='display:none' class='laptop-only button-toggle mobile' onclick='util.scrollComment()' aria-label="跳转到评论区">
       <%- icon('default:tocomment') %>
     </button>
   <% } %>

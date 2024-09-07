@@ -61,7 +61,7 @@ function layoutDiv() {
     if (theme.style.animated_avatar.animate) {
       el += `<div class="bg" style="opacity:0;background-image:url(${theme.style.animated_avatar.background});"></div>`
     }
-    el += `<img no-lazy class="avatar" src="${md_text(logo.avatar)}">`
+    el += `<img no-lazy class="avatar" src="${md_text(logo.avatar)}" alt="网站作者头像">`
     el += `</a>`
   }
   const main = md_text(logo.title)
