@@ -1,10 +1,89 @@
-blockquote
-  display: block
-  margin-left: 0
-  margin-right: 0
-  padding: 0.25rem 0.75rem
-  background: var(--block)
-  $bd-left = 4px
-  border-left: $bd-left solid var(--text-meta)
-  border-radius: $bd-left $border-card $border-card $bd-left
-  color: var(--text-p2)
+
+
+:root {
+  /* Light theme variables */
+  --blockquote-bg-light: #F3F3F3;
+  --blockquote-border-light: #C9C9C9;
+  --blockquote-text-light: #0a111c;
+  --blockquote-quote-light: #9E9E9E;
+
+  /* Dark theme variables */
+  --blockquote-bg-dark: #2C2C2C;
+  --blockquote-border-dark: #686868;
+  --blockquote-text-dark: #e1e1e1;
+  --blockquote-quote-dark: #9E9E9E;
+
+
+  /* Font variables */
+
+  --font-family: 'Merriweather', 'LXGW WenKai Screen', Arial, system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --blockquote-bg: var(--blockquote-bg-dark);
+    --blockquote-border: var(--blockquote-border-dark);
+    --blockquote-text: var(--blockquote-text-dark);
+    --blockquote-quote: var(--blockquote-quote-dark);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --blockquote-bg: var(--blockquote-bg-light);
+    --blockquote-border: var(--blockquote-border-light);
+    --blockquote-text: var(--blockquote-text-light);
+    --blockquote-quote: var(--blockquote-quote-light);
+  }
+}
+
+blockquote {
+  display: block;
+  margin: 1rem 0;
+  padding: 0.6rem 2rem;
+  background: var(--blockquote-bg);
+  //border-left: 4px solid var(--blockquote-border);
+  border-radius: 8px;
+  color: var(--blockquote-text);
+  font-size: 1.1em;
+  line-height: 1.6;
+  font-style: italic;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-family: var(--font-family);
+}
+
+.md-text blockquote > p:not([class]) {
+  text-align: left;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+blockquote::before {
+  content: '“';
+  position: absolute;
+  top: -2rem;
+  left: -1rem;
+  font-size: 6rem;
+  color: var(--blockquote-quote);
+  opacity: 0.25;
+  font-family: Georgia, serif;
+}
+
+blockquote:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 20px rgba(93, 78, 101, 0.1);
+}
+
+blockquote + blockquote {
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  blockquote {
+    padding: 0.2rem 0.2rem 0.2rem 2rem;
+    font-size: 1em;
+  }
+}
