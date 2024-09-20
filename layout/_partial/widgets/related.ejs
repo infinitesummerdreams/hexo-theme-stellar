@@ -13,7 +13,15 @@ function relatedPostsInTopic() {
   el += `<span class="name">${__('btn.topic') + __('symbol.colon') + (topic.name || topic.title)}</span>`
   el += `</div>`
   el += `<div class="widget-body">`
-  for (let post of topic.pages) {
+
+  // 对 topic.pages 进行排序
+  const sortedPages = [...topic.pages].sort((a, b) => {
+    const aUpdated = new Date(a.updated || a.date);
+    const bUpdated = new Date(b.updated || b.date);
+    return bUpdated - aUpdated; // 降序排序，最新的在前
+  });
+
+  for (let post of sortedPages) {
     const isActive = post.path == page.path
     el += `<a class="item${isActive ? ' active' : ''}" href="${url_for(post.path)}">`
     el += `<span class="title">${post.title}</span>`
