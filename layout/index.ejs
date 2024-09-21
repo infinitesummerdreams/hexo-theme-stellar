@@ -12,7 +12,9 @@ function layout_post_card(layout, post, content) {
   if (layout == 'post' && post.cover != undefined && post.poster != undefined) {
     layout += ' photo';
   }
-  el += `<a class="post-card${scrollreveal(' ')} ${layout}" href="${url_for(post.link || post.path)}">`
+  // 添加 easter-egg 类，如果文章设置了 easteregg: true
+  var easterEggClass = post.easteregg ? ' easter-egg' : '';
+  el += `<a class="post-card${scrollreveal(' ')} ${layout}${easterEggClass}" href="${url_for(post.link || post.path)}">`
   el += content;
   el += '</a>';
   return el;
