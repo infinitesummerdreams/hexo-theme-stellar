@@ -44,6 +44,7 @@ function layoutDiv() {
     el += partial('_partial/main/navbar/article_banner')
   }
   el += `<article class="${articleClass()}">`
+  el += generateTopicList(page)  // 生成专栏列表
   if (page.content && page.content.length > 0) {
     el += page.content
   }
