@@ -28,8 +28,10 @@ function layoutDiv() {
   if (content) {
     el += markdown(content)
   }
+  el += '<p style="line-height: 1.6;">'
   el += '<span class="totalcount">收集了 ' + site.posts.length + ' 颗星星 ✧</span><span class="post-count"> 共 ' + totalcount(site) + ' 颗星尘，</span>'
   el += '&emsp;<button id="toggleButton" style="font-family: \'IM Fell DW Pica\'; background-color: var(--tag-bg-color); color: var(--tag-text-color); border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s, color 0.3s;">Let it snow!</button><script defer src="/js/snowflake.js"></script>';
+  el += '</p>'
   el += '</div>'
   
   // 更新的更新日志部分
