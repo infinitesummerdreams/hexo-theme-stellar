@@ -2,7 +2,7 @@
 
 .users-wrap .grid-box {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); /* 根据需要调整列宽 */
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* 根据需要调整列宽 */
   column-gap: 10px;
   row-gap: 10px;
   border-radius: 8px;
@@ -11,14 +11,11 @@
 
 
 .users-wrap .user-card {
-  display: flex;
-  flex-direction: column; /* 垂直堆叠子元素 */
   align-items: center; /* 水平居中对齐子元素 */
-  justify-content: center; /* 垂直居中对齐子元素 */
   background: var(--card);
   border: none;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 15px;
+  padding: 20px;
   border-radius: 10px;
   flex-basis: calc(50% - 20px); /* 自动适应容器宽度 */
   min-height: 80px;
@@ -34,42 +31,40 @@
 }
 
 .users-wrap .user-card a {
-  display: flex;
-  align-items: center; /* 水平居中对齐子元素 */
-  justify-content: center; /* 垂直居中对齐子元素 */
+  display: block;
   text-decoration: none;
   color: inherit;
   width: 100%;
 }
 
-.users-wrap .user-card img {
-  border-radius: 64px;
-  width: 50px; /* 图片宽度 */
-  height: 50px; /* 图片高度 */
-  margin-bottom: 10px; /* 图片和名称之间的间隔 */
-
+.users-wrap .user-card .friend-link-header {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  justify-content: space-between;
 }
 
-
+.users-wrap .user-card .name.image-meta {
+  flex: 1;
+  margin-right: 10px;
+}
 
 .users-wrap .user-card img {
-  border-radius: 64px
-  width: 50px;
-  height: 50px;
-  margin-left: 20px; /* 与文字内容保持间隔 */
-  order: 2; /* 将图片放在右侧 */
+  border-radius: 50%;
+  width: 50px; 
+  height: 50px; 
+  object-fit: cover;
+  align-self: flex-start;
+  margin-bottom: 10px; 
+  margin-left: 20px; 
   transition: transform 0.3s ease; /* 添加变换的过渡动画 */
-
 }
 
 .users-wrap .user-card:hover img {
   transform: scale(1.2) rotate(5deg); /* 鼠标悬浮时缩放和旋转图片 */
 }
 
-.users-wrap .user-card .name {
-  order: 1; /* 确保文字内容在左侧 */
-  flex-grow: 1; /* 文字内容占据剩余空间 */
-}
+
 
 @media (max-width: 768px) {
   .users-wrap .user-card {
@@ -77,16 +72,18 @@
   }
 }
 
-.image-caption
+.users-wrap .user-card .image-caption
   font-size: 1rem
+  padding: 10px 0
   font-weight: bold
 
 
 .user-description
-  font-size: 0.8rem
+  font-size: .9rem
+  padding: 5px 0
   font-style: italic;
   color: var(--text-meta)
 
 .user-note
-  font-size: 0.8rem
+  font-size: .85rem
   color: var(--theme-link)

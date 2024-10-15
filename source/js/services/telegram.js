@@ -1,24 +1,24 @@
 utils.jq(() => {
   $(function () {
-    const els = document.getElementsByClassName('ds-telegram');
+    const els = document.getElementsByClassName("ds-telegram");
     for (var i = 0; i < els.length; i++) {
       const el = els[i];
-      const api = el.getAttribute('api');
+      const api = el.getAttribute("api");
       if (api == null) {
         continue;
       }
-      const default_avatar = el.getAttribute('avatar') || def.avatar;
-      const limit = el.getAttribute('limit');
-      const host = api.replace(/https:\/\/(.*?)\/(.*)/i, '$1');
+      const default_avatar = el.getAttribute("avatar") || def.avatar;
+      const limit = el.getAttribute("limit");
+      const host = api.replace(/https:\/\/(.*?)\/(.*)/i, "$1");
       // layout
-      utils.request(el, api, function(data) {
+      utils.request(el, api, function (data) {
         var users = [];
-        const filter = el.getAttribute('user');
+        const filter = el.getAttribute("user");
         if (filter && filter.length > 0) {
           users = filter.split(",");
         }
         var hide = [];
-        const hideStr = el.getAttribute('hide');
+        const hideStr = el.getAttribute("hide");
         if (hideStr && hideStr.length > 0) {
           hide = hideStr.split(",");
         }
@@ -34,23 +34,24 @@ utils.jq(() => {
           let date = new Date(item.createdTs * 1000);
           var cell = '<div class="timenode" index="' + i + '">';
           cell += '<div class="header">';
-          if (!users.length && !hide.includes('user')) {
+          if (!users.length && !hide.includes("user")) {
             cell += '<div class="user-info">';
             if (default_avatar.length > 0) {
               cell += `<img src="${default_avatar}">`;
             }
-            cell += '<span>' + item.creatorName + '</span>';
-            cell += '</div>';
+            cell += "<span>" + item.creatorName + "</span>";
+            cell += "</div>";
           }
-          cell += '<span>' + date.toLocaleString() + '</span>';
-          cell += '</div>';
-          //cell += `<div class="body">`;
-          const originalLink = `https://t.me/s/seeyounexttimeline/${item.id}`;
-          cell += `<a class="body" href="${originalLink}" target="_blank">`;
-          cell += marked.parse(item.content || '');
+          cell += "<span>" + date.toLocaleString() + "</span>";
+          cell += "</div>";
+          // cell += `<div class="body">`;
+          // const originalLink = `https://t.me/s/seeyounexttimeline/${item.id}`;
+          // cell += `<a class="body" href="${originalLink}" target="_blank">`;
+          cell += `<div class="body" onclick="window.open('${item.originalUrl}', '_blank')">`;
+          cell += marked.parse(item.content || "");
           var imgs = [];
           for (let res of item.resourceList) {
-            if (res.type?.includes('image/')) {
+            if (res.type?.includes("image/")) {
               imgs.push(res);
             }
           }
@@ -63,10 +64,11 @@ utils.jq(() => {
                 cell += `<div class="image-bg"><img src="https://${host}/o/r/${img.id}" data-fancybox="memos"></div>`;
               }
             }
-            cell += '</div>';
+            cell += "</div>";
           }
-          cell += '</a>';  // Close the <a> tag here inside the body
-          //cell += '</div>';  // Close the timenode div
+          cell += "</div>";
+          // cell += "</a>"; // Close the <a> tag here inside the body
+          // cell += "</div>"; // Close the timenode div
           $(el).append(cell);
         });
       });
