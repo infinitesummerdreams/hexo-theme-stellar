@@ -1,42 +1,40 @@
 utils.jq(() => {
-  $(function () {
-    const els = document.getElementsByClassName("ds-friends");
-    for (var i = 0; i < els.length; i++) {
-      const el = els[i];
-      const api = el.getAttribute("api");
-      if (api == null) {
-        continue;
-      }
-      const default_avatar = def.avatar;
-      // layout
-      utils.request(el, api, function (data) {
-        for (let item of data.content || data) {
-          var cell = `<div class="grid-cell user-card">`;
-          cell += `<div class="card-link" onclick="window.open('${
-            item.html_url || item.url
-          }', '_blank')">`;
-          cell += `<div class="friend-link-header">`;
-          cell += `<div class="name image-meta">`;
-          cell += `<span class="image-caption">${
-            item.title || item.login
-          }</span>`;
-          // Adding description and note
-          if (item.description) {
-            cell += `<div class="user-description">${item.description}</div>`;
-          }
-          cell += `</div>`;
-          cell += `<img src="${
-            item.avatar_url || item.avatar || item.icon || default_avatar
-          }" onerror="javascript:this.removeAttribute('data-src');this.src='${default_avatar}';"/>`;
-          cell += `</div>`;
-          if (item.note) {
-            cell += `<div class="user-note">${item.note}</div>`;
-          }
-          cell += `</div>`;
-          cell += `</div>`;
-          $(el).find(".grid-box").append(cell);
-        }
-      });
+  const createCard = (item, defaultAvatar) => `
+    <div class="grid-cell user-card">
+      <a class="card-link" onclick="window.open('${item.html_url || item.url}', '_blank')">
+        <div class="friend-link-header">
+          <div class="name image-meta">
+            <span class="image-caption">${item.title || item.login}</span>
+            ${item.description ? `<div class="user-description">${item.description}</div>` : ''}
+          </div>
+          <img 
+            src="${item.avatar_url || item.avatar || item.icon || defaultAvatar}" 
+            onerror="this.removeAttribute('data-src');this.src='${defaultAvatar}';"
+          />
+        </div>
+        ${item.note ? `<div class="user-note">${item.note}</div>` : ''}
+      </a>
+    </div>
+  `;
+
+  // Fisher-Yates shuffle
+  const shuffle = arr => {
+    const shuffled = [...arr];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
+    return shuffled;
+  };
+
+  [...document.getElementsByClassName("ds-friends")].forEach(el => {
+    const api = el.getAttribute("api");
+    if (!api) return;
+
+    utils.request(el, api, data => {
+      const content = shuffle(data.content || data);
+      const cards = content.map(item => createCard(item, def.avatar)).join('');
+      $(el).find(".grid-box").html(cards);
+    });
   });
 });
