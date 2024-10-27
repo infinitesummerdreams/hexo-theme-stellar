@@ -41,10 +41,10 @@ blockquote {
   display: block;
   margin: 1rem 0;
   padding: 0.6rem 2rem;
-  background: var(--blockquote-bg);
+  background: var(--block);
   //border-left: 4px solid var(--blockquote-border);
   border-radius: 8px;
-  color: var(--blockquote-text);
+  color: var(--text-p1);
   font-size: 1.1em;
   line-height: 1.6;
   font-style: italic;
@@ -72,10 +72,11 @@ blockquote::before {
   font-family: Georgia, serif;
 }
 
-blockquote:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 20px rgba(93, 78, 101, 0.1);
-}
+
+// blockquote:hover {
+//   transform: translateY(-3px);
+//   box-shadow: 0 4px 20px rgba(93, 78, 101, 0.1);
+// }
 
 blockquote + blockquote {
   margin-top: 1rem;
@@ -83,7 +84,7 @@ blockquote + blockquote {
 
 @media (max-width: 768px) {
   blockquote {
-    padding: 0.2rem 0.2rem 0.2rem 2rem;
+    padding: 0.2rem 0.5rem 0.2rem 2rem;
     font-size: 1em;
   }
 }

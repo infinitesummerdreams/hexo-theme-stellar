@@ -19,13 +19,14 @@
       z-index: 1
       filter: unset
       background: var(--alpha100)
-    img
-      border-radius: 2px
-      if hexo-config('style.prefers_theme') == 'auto'
-        @media (prefers-color-scheme: dark)
-          filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
-      if hexo-config('style.prefers_theme') == 'always'
-        filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+      img
+        border-radius: 2px
+        // 当手动选择深色主题时
+        [data-theme="dark"] &
+          filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%)
+        :root:not([data-theme]) &
+          @media (prefers-color-scheme: dark)
+            filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%)
     padding: 6px
     border-radius: 32px
     filter: grayscale(100%)
@@ -41,3 +42,58 @@
       height: 1em
       width: 1em
       border-radius: 2px
+
+
+
+
+.theme-toggle
+  height: 1em
+  width: 1em
+  // margin-right: 12px
+  // margin-bottom: 8px
+
+#theme-toggle
+  height: 1em
+  width: 1em
+  // display: flex
+  align-self: center
+  cursor: pointer
+  padding: 6px 6px
+  border-radius: 6px
+  transition: background-color 0.3s
+  
+  &:hover
+    background-color: rgba(128, 128, 128, 0.1)
+  
+  .toggle
+    width: 1.1em
+    height: 1.1em
+    // margin-right: 8px
+    
+    &.toggle-right
+      display: none
+    
+    [data-theme="dark"] &
+      &.toggle-left
+        display: none
+      &.toggle-right
+        display: block
+    
+    :root:not([data-theme]) &
+      opacity: 0.5
+  
+  .mode-text
+    font-size: 14px
+    
+    &:after
+      content: "Light"
+    
+    [data-theme="dark"] &:after
+      content: "Dark"
+    
+    :root:not([data-theme]) &:after
+      content: "Auto"
+
+  [data-theme="dark"] &,
+  // :root:not([data-theme]) & @media (prefers-color-scheme: dark)
+    color: #ffffff

@@ -36,6 +36,55 @@ _light_text()
   --text-meta: hsl($color-text-h, $color-text-s, 100 - $color-text-l / 0.5 * 1.75)
   --text-code: hsl($color-code-h, $color-code-s, (100 - $color-code-l) * 1.2)
 
+
+
+_light_terminal()
+  .terminal-container {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --border-color: #e0e0e0;
+    --title-color: #4a4a4a;
+    --version-color: #6a6a6a;
+    --welcome-color: #27ae60;
+    --prompt-color: #2980b9;
+    --btn-bg-color: #f0f0f0;
+    --btn-text-color: #000000;
+    --btn-hover-color: #e0e0e0;
+    --command-color: #d35400;
+    --scrollbar-bg: #f0f0f0;
+    --scrollbar-thumb: #c0c0c0;
+    --scrollbar-hover: #a0a0a0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+  }
+
+
+
+_dark_terminal()
+  .terminal-container {
+    --bg-color: #2c2c2c;
+    --text-color: #ffffff;
+    --border-color: #1a1a1a;
+    --title-color: #d4d4d4;
+    --version-color: #a0a0a0;
+    --welcome-color: #5ad75a;
+    --prompt-color: #5ac8fa;
+    --btn-bg-color: #4a4a4a;
+    --btn-text-color: #ffffff;
+    --btn-hover-color: #5a5a5a;
+    --command-color: #ffd60a;
+    --scrollbar-bg: #2c2c2c;
+    --scrollbar-thumb: #4a4a4a;
+    --scrollbar-hover: #5a5a5a;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --close-btn-color: #ff5f56;
+    --minimize-btn-color: #ffbd2e;
+    --maximize-btn-color: #27c93f;
+  }
+
+
+
+
+
 _common_root()
   :root
     --theme-link: $color-link
@@ -59,7 +108,12 @@ _light_root()
   --alpha100: white
   --tag-bg-color: #F2EEFD
   --tag-text-color: #835EEC
+  --label-orange-background: #fdf3ec
+  --label-orange-text: #f28e49
+  --label-blue-background: #ecf6fd
+  --label-blue-text: #439cdb
   _dark_text()
+  _light_terminal()
 
 
 _dark_root()
@@ -80,7 +134,12 @@ _dark_root()
   --alpha100: black
   --tag-bg-color: #282433
   --tag-text-color: #A28BF2
+  --label-orange-background: #372d29
+  --label-orange-text: #ec8a44
+  --label-blue-background: #292e37
+  --label-blue-text: #73d2f7
   _light_text()
+  _dark_terminal()
   /*@media screen and (max-width: $device-mobile-max)
     --site-bg: black*/
 

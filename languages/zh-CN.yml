@@ -63,7 +63,7 @@ message:
   theme_switched:
     light: 切换到浅色模式
     dark: 切换到深色模式
-    auto: 跟随星系色彩
+    auto: 跟随星系
 
 symbol:
   comma: "，"
