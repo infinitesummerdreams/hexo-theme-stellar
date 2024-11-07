@@ -8,10 +8,26 @@ utils.jq(() => {
         continue;
       }
       const default_avatar = el.getAttribute("avatar") || def.avatar;
-      const limit = el.getAttribute("limit");
+      const limit = parseInt(el.getAttribute("limit")) || 10;
       const host = api.replace(/https:\/\/(.*?)\/(.*)/i, "$1");
-      // layout
-      utils.request(el, api, function (data) {
+
+      // 创建一个容器来存放所有的 timenode
+      const container = document.createElement('div');
+      container.className = 'timeline-container';
+      el.appendChild(container);
+
+      // 保存状态
+      el.dataset.offset = '0';
+      
+      // 创建加载更多按钮
+      const loadMoreBtn = document.createElement('div');
+      loadMoreBtn.className = 'load-more-btn';
+      loadMoreBtn.innerHTML = '加载更多';
+      loadMoreBtn.style.cssText = 'text-align: center; padding: 10px; cursor: pointer; color: #666; margin-top: 10px;';
+      el.appendChild(loadMoreBtn);
+
+      // 渲染消息的函数
+      function renderTelegram(data, append = false) {
         var users = [];
         const filter = el.getAttribute("user");
         if (filter && filter.length > 0) {
@@ -22,15 +38,21 @@ utils.jq(() => {
         if (hideStr && hideStr.length > 0) {
           hide = hideStr.split(",");
         }
+
+        if (!append) {
+          container.innerHTML = ''; // 清空容器
+        }
+
+        // 按时间倒序排序，确保最新的在前面
+        data.sort((a, b) => b.createdTs - a.createdTs);
+
         data.forEach((item, i) => {
-          if (limit && i >= limit) {
-            return;
-          }
           if (item.user && item.user.login && users.length > 0) {
             if (!users.includes(item.user.login)) {
               return;
             }
           }
+          
           let date = new Date(item.createdTs * 1000);
           var cell = '<div class="timenode" index="' + i + '">';
           cell += '<div class="header">';
@@ -45,10 +67,8 @@ utils.jq(() => {
           cell += "<span>" + date.toLocaleString() + "</span>";
           cell += "</div>";
           cell += `<div class="body">`;
-          // const originalLink = `https://t.me/s/seeyounexttimeline/${item.id}`;
-          // cell += `<a class="body" href="${originalLink}" target="_blank">`;
-          // cell += `<div class="body" onclick="window.open('${item.originalUrl}', '_blank')">`;
           cell += marked.parse(item.content || "");
+          
           var imgs = [];
           for (let res of item.resourceList) {
             if (res.type?.includes("image/")) {
@@ -66,26 +86,51 @@ utils.jq(() => {
             }
             cell += "</div>";
           }
-
-          // cell += '<div class="flex right">';
-          // cell +=
-          //   '<a class="item comments last" href="' +
-          //   item.originalUrl +
-          //   '#comment" target="_blank" rel="external nofollow noopener noreferrer">';
-          // // cell +=
-          // //   '<span><svg t="1666270368054" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2528" width="200" height="200"><path d="M952 64H72C32.3 64 0 96.3 0 136v508c0 39.7 32.3 72 72 72h261l128 128c14 14 32.5 21.1 50.9 21.1s36.9-7 50.9-21.1l128-128h261c39.7 0 72-32.3 72-72V136c0.2-39.7-32.1-72-71.8-72zM222 462c-39.8 0-72-32.2-72-72s32.2-72 72-72 72 32.2 72 72-32.2 72-72 72z m290-7.7c-39.8 0-72-32.2-72-72s32.2-72 72-72 72 32.2 72 72c0 39.7-32.2 72-72 72z m290 8c-39.8 0-72-32.2-72-72s32.2-72 72-72 72 32.2 72 72c0 39.7-32.2 72-72 72z" p-id="2529"></path></svg> ' +
-          // //   (item.comments || 0) +
-          // //   "</span>";
-          //   cell +=
-          //   '<span><svg t="1666270368054" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2528" width="200" height="200"><path d="M952 64H72C32.3 64 0 96.3 0 136v508c0 39.7 32.3 72 72 72h261l128 128c14 14 32.5 21.1 50.9 21.1s36.9-7 50.9-21.1l128-128h261c39.7 0 72-32.3 72-72V136c0.2-39.7-32.1-72-71.8-72zM222 462c-39.8 0-72-32.2-72-72s32.2-72 72-72 72 32.2 72 72-32.2 72-72 72z m290-7.7c-39.8 0-72-32.2-72-72s32.2-72 72-72 72 32.2 72 72c0 39.7-32.2 72-72 72z m290 8c-39.8 0-72-32.2-72-72s32.2-72 72-72 72 32.2 72 72c0 39.7-32.2 72-72 72z" p-id="2529"></path></svg></span>';
-          // cell += "</a>";
-          // cell += "</div>";
-
           cell += "</div>";
-          // cell += "</a>"; // Close the <a> tag here inside the body
-          // cell += "</div>"; // Close the timenode div
-          $(el).append(cell);
+          cell += "</div>"; // 结束 timenode
+
+          if (append) {
+            // 追加到容器末尾
+            container.insertAdjacentHTML('beforeend', cell);
+          } else {
+            // 添加到容器
+            container.insertAdjacentHTML('beforeend', cell);
+          }
         });
+
+        // 如果没有数据了，隐藏加载更多按钮
+        if (data.length < limit) {
+          loadMoreBtn.style.display = 'none';
+        } else {
+          loadMoreBtn.style.display = 'block';
+        }
+
+        // 初始化 fancybox
+        if (window.Fancybox) {
+          window.Fancybox.bind('[data-fancybox="memos"]');
+        }
+      }
+
+      // 加载数据的函数
+      function loadTelegram(offset = 0, append = false) {
+        const apiUrl = new URL(api);
+        apiUrl.searchParams.set('limit', limit);
+        apiUrl.searchParams.set('offset', offset);
+        
+        utils.request(el, apiUrl.toString(), function(data) {
+          renderTelegram(data, append);
+          // 更新offset
+          el.dataset.offset = (offset + data.length).toString();
+        });
+      }
+
+      // 初始加载
+      loadTelegram(0, false);
+
+      // 绑定加载更多事件
+      loadMoreBtn.addEventListener('click', function() {
+        const currentOffset = parseInt(el.dataset.offset);
+        loadTelegram(currentOffset, true);
       });
     }
   });
