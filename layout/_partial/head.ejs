@@ -120,25 +120,32 @@ function custom_inject() {
   <% } %>
 
   <!-- Theme initialization -->
-
 <script>
   (function() {
     const getTheme = () => {
       const stored = localStorage.getItem('Stellar.theme');
-      if (stored) return stored;
-      
-      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      return systemDark ? 'dark' : 'light';
+      if (stored) {
+        // If user explicitly set a theme, use it
+        return stored;
+      }
+      // In auto mode, don't set any theme attribute
+      // This allows CSS media queries to handle it
+      return 'auto';
     };
 
     // Apply theme immediately during HTML parse
     const theme = getTheme();
-    document.documentElement.setAttribute('data-theme', theme);
+    if (theme !== 'auto') {
+      document.documentElement.setAttribute('data-theme', theme);
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
     
-    // Optional: Add system theme change listener
+    // Optional: Add system theme change listener 
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-      if (!localStorage.getItem('Stellar.theme')) {
-        document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+      const currentTheme = localStorage.getItem('Stellar.theme');
+      if (!currentTheme || currentTheme === 'auto') {
+        document.documentElement.removeAttribute('data-theme');
       }
     });
   })();
