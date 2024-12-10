@@ -119,6 +119,31 @@ function custom_inject() {
     <%- feed_tag(config.feed.path, {title: config.title}) %>
   <% } %>
 
+  <!-- Theme initialization -->
+
+<script>
+  (function() {
+    const getTheme = () => {
+      const stored = localStorage.getItem('Stellar.theme');
+      if (stored) return stored;
+      
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      return systemDark ? 'dark' : 'light';
+    };
+
+    // Apply theme immediately during HTML parse
+    const theme = getTheme();
+    document.documentElement.setAttribute('data-theme', theme);
+    
+    // Optional: Add system theme change listener
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+      if (!localStorage.getItem('Stellar.theme')) {
+        document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+      }
+    });
+  })();
+</script>
+
   <link rel="stylesheet" href="<%- url_for(`${theme.stellar.main_css}?v=${stellar_info('version')}`) %>">
 
 
