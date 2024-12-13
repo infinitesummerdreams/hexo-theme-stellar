@@ -44,6 +44,16 @@ meta:
     hour: 小时前
     day: 天前
     month: 个月前
+  webinfo:
+    article: 星星
+    runtime: 银河漫游的
+    wordcount: 收集星尘
+    sitetime: 上次更新
+    post: 篇
+    time: 天
+    version: 公转：
+  wordcount: 
+    words: 颗
 
 page:
   error:
@@ -71,3 +81,4 @@ symbol:
   colon: "："
   brackets_l: "（"
   brackets_r: "）"
+
