@@ -4,9 +4,11 @@
     justify-content: space-evenly
     align-items: center
     border-radius: $border-card
-    padding: 8px 0px
+    padding: 8px 3px
     background: var(--card)
-    border: 1px solid var(--block-border)
+    // background: var(--alpha45)
+    // border: 1px solid var(--block-border)
+    box-shadow: 0 1px 2px 0px rgba(0,0,0,0.1)
 
     .webinfo-item
       display: flex
@@ -16,11 +18,19 @@
       padding: 12 0
 
       .webinfo-label
-        font-size: 0.9em
+        font-size: 0.85em
         margin-bottom: 8px
         margin-top: 8px
 
       .webinfo-value
-        font-size: 1.1em
+        font-size: 1em
         font-weight: bold
         margin-bottom: 8px
+
+
+
+// @media screen and (min-width: $device-laptop) {
+//   .widgets .widget-wrapper.webinfo .widget-body {
+//     background: var(--block);
+//   }
+// }
