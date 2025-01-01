@@ -15,7 +15,7 @@ function layoutDiv() {
     if (item.runtime) {
       el += '<div class="webinfo-item">';
       el += `<span class="webinfo-label">${__("meta.webinfo.runtime")}</span>`;
-      el += `<span class="webinfo-value">第&nbsp;<time class="ds-webinfo" datetime="${item.runtime}">&nbsp;${__("meta.webinfo.time")}&nbsp;</time></span>`;
+      el += `<span class="webinfo-value">第&thinsp;<time class="ds-webinfo" datetime="${item.runtime}">&thinsp;${__("meta.webinfo.time")}</time></span>`;
       el += '</div>';
     }
   // ...existing code...
@@ -28,15 +28,6 @@ function layoutDiv() {
     el += '</div>';
   }
 
-  // 总字数
-  if (item.wordcount) {
-    var totalSymbols = totalcount(site);
-    el += '<div class="webinfo-item">';
-    el += `<span class="webinfo-label">${__("meta.webinfo.wordcount")}</span>`;
-    el += `<span class="webinfo-value">${totalSymbols}&nbsp;${__("meta.wordcount.words")}</span>`;
-    el += '</div>';
-  }
-
   // 上次更新时间
   if (item.sitetime) {
     el += '<div class="webinfo-item" id="post-meta">';
@@ -44,6 +35,17 @@ function layoutDiv() {
     el += `<span class="webinfo-value"><time class="time" datetime="${new Date()}">${new Date().toLocaleString('zh-CN', { year: 'numeric', month: 'numeric', day: 'numeric' })}</time></span>`;
     el += '</div>';
   }
+
+  // 总字数
+  if (item.wordcount) {
+    var totalSymbols = totalcount(site);
+    el += '<div class="webinfo-item">';
+    el += `<span class="webinfo-label">${__("meta.webinfo.wordcount")}</span>`;
+    el += `<span class="webinfo-value">${totalSymbols}&thinsp;${__("meta.wordcount.words")}</span>`;
+    el += '</div>';
+  }
+
+
 
   // 版本信息（可选）
   if (item.version && config.swpp.enable) {

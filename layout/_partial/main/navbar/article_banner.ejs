@@ -46,12 +46,12 @@ function layoutBreadcrumb() {
 
   // 在这里添加标签代码
   if (page.layout == "post" && page.tags && page.tags.length > 0) {
-    el += '<div id="tag">'; // 将标签容器的创建移动到条件内部
-    el += ' <span>&nbsp标签：</span>';
+    el += '<div class="flex-row" id="tag">'; 
+    el += ' <span class="text created">标签：</span>';
     el += list_categories(page.tags, {
       class: "cap breadcrumb",
       show_count: false,
-      separator: '&nbsp; ',
+      separator: '&ensp;',
       style: "none"
     });
     el += '&nbsp</div>';
