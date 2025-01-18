@@ -25,6 +25,14 @@ function layoutDiv() {
   }
   // footer content
   el += '<div class="text">'
+
+  // Add copyright notice
+  // const endYear = (theme.copyright && theme.copyright.end_year) ? theme.copyright.end_year : new Date().getFullYear();
+  // const startYear = (theme.copyright && theme.copyright.start_year) ? theme.copyright.start_year : new Date().getFullYear();
+  // const yearText = startYear >= endYear ? endYear : startYear + "–" + endYear;
+
+  // el += '<br>' +' &copy; ' + yearText + ' ' + (config.author || config.title)
+
   if (content) {
     el += markdown(content)
   }
@@ -36,7 +44,7 @@ function layoutDiv() {
   
   // 更新的更新日志部分
   el += '<div class="updates" style="margin-top: 1em; font-size: 0.8em;">'
-  el += '<span class="site-info">Umami Analytics Enabled ｜ </span>'
+  el += '<span class="site-info">Umami Analytics <span class="umami-status">loading</span> ｜ </span>'
   el += '<a href="/about/#-swig3-span-stylefont-family-jiangxizhuokai-font-weight400站点更新日志span" style="font-weight: bold; text-decoration: none;">站点更新日志</a>'
   el += '</div>'
   
